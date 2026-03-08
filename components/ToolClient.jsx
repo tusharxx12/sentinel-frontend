@@ -212,15 +212,27 @@ export default function ToolClient() {
       })
 
       const result = await resp.json()
-      if (result.error) throw new Error(result.error)
+console.log('API response:', result)
 
-      setMaskB64(result.mask_base64)
-      setStats(result.stats)
-      drawOverlay(result.mask_base64, lat, lon)
+if (result.detail) throw new Error(result.detail)
+if (result.error)  throw new Error(result.error)
 
-      setStatus('done')
-      log(`Analysis complete — ${result.stats.damage_pct}% damage detected`, 'ok')
+const stats = result.stats || result
+const mask  = result.mask_base64
 
+if (!mask) throw new Error('No mask returned from API')
+
+setMaskB64(mask)
+setStats(stats)
+drawOverlay(mask, lat, lon)
+
+setStatus('done')
+log(`Analysis complete — ${stats.damage_pct ?? stats.damage_pct}% damage detected`, 'ok')
+```
+
+Also open your browser DevTools (F12 → Console tab) and paste this after running analysis to see the raw response:
+```
+Look for: API response: {...}
     } catch (e) {
       setStatus('error')
       log(`Error: ${e.message}`, 'err')
