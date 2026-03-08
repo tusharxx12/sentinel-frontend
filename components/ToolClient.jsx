@@ -58,8 +58,8 @@ export default function ToolClient() {
   const [logs,        setLogs]        = useState([])
   const [status,      setStatus]      = useState('idle') // idle | fetching | analyzing | done | error
   const [selectedPos, setSelectedPos] = useState(null)
-  const [preDate,     setPreDate]     = useState('2023-01-01')
-  const [postDate,    setPostDate]    = useState('2023-06-01')
+  const [preDate,     setPreDate]     = useState('2025-01-01')
+  const [postDate,    setPostDate]    = useState('2025-06-01')
   const [stats,       setStats]       = useState(null)
   const [maskB64,     setMaskB64]     = useState(null)
   const [preThumb,    setPreThumb]    = useState(null)
