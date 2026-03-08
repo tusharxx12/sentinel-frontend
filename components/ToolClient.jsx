@@ -14,9 +14,9 @@ const CITIES = [
 ]
 
 function LogLine({ text, type }) {
-  const colors = { ok: 'text-green-400', err: 'text-[#E8001D]', info: 'text-blue-400', '': 'text-white/30' }
+  const colors = { ok: 'text-green-300', err: 'text-red-400', info: 'text-blue-300', '': 'text-white/70' }
   return (
-    <div className={`font-mono text-[10px] leading-5 ${colors[type] || colors['']}`}>
+    <div className={`font-mono text-[10px] leading-5 ${colors[type] || 'text-white/50'}`}>
       {text}
     </div>
   )
@@ -233,14 +233,14 @@ export default function ToolClient() {
     <div className="h-screen w-screen flex flex-col bg-[#0A0A0A] overflow-hidden">
 
       {/* ── TOP BAR ── */}
-      <div className="flex items-center justify-between px-6 h-14 border-b border-white/8 flex-shrink-0 bg-[#0A0A0A] z-50">
+      <div className="flex items-center justify-between px-6 h-14 border-b border-white/15 flex-shrink-0 bg-[#0A0A0A] z-50">
         <div className="flex items-center gap-6">
           <a href="/" className="font-display text-xl tracking-widest text-white">
             SENT<span className="text-[#E8001D]">INEL</span>
           </a>
           <div className="hidden md:flex items-center gap-2">
             <div className={`w-1.5 h-1.5 rounded-full ${apiOk ? 'bg-green-400 animate-pulse' : 'bg-red-500'}`} />
-            <span className="font-mono text-[10px] tracking-widest text-white/30 uppercase">
+            <span className="font-mono text-[10px] tracking-widest text-white/60 uppercase">
               {apiOk ? 'API ONLINE' : 'API OFFLINE'}
             </span>
           </div>
@@ -248,11 +248,11 @@ export default function ToolClient() {
 
         <div className="flex items-center gap-4">
           {selectedPos && (
-            <span className="hidden md:block font-mono text-[10px] text-white/30 tracking-wider">
+            <span className="hidden md:block font-mono text-[10px] text-white/70 tracking-wider">
               {selectedPos.lat.toFixed(4)}, {selectedPos.lon.toFixed(4)}
             </span>
           )}
-          <a href="/" className="font-mono text-[10px] tracking-widest text-white/30 hover:text-white transition-colors uppercase">
+          <a href="/" className="font-mono text-[10px] tracking-widest text-white/70 hover:text-white transition-colors uppercase">
             ← Back
           </a>
         </div>
@@ -262,11 +262,11 @@ export default function ToolClient() {
       <div className="flex flex-1 overflow-hidden">
 
         {/* ── LEFT SIDEBAR ── */}
-        <div className="w-72 flex-shrink-0 bg-[#0A0A0A] border-r border-white/8 flex flex-col overflow-y-auto">
+        <div className="w-72 flex-shrink-0 bg-[#0A0A0A] border-r border-white/15 flex flex-col overflow-y-auto">
 
           {/* Search */}
-          <div className="p-4 border-b border-white/8">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">Location</div>
+          <div className="p-4 border-b border-white/15">
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">Location</div>
             <div className="flex gap-2 mb-3">
               <input
                 type="text"
@@ -274,17 +274,17 @@ export default function ToolClient() {
                 onChange={e => setSearchVal(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && searchLocation()}
                 placeholder="Search city..."
-                className="flex-1 bg-white/5 border border-white/10 text-white text-xs font-mono px-3 py-2 outline-none focus:border-[#E8001D]/50 placeholder-white/20"
+                className="flex-1 bg-white/5 border border-white/10 text-white text-xs font-mono px-3 py-2 outline-none focus:border-[#E8001D]/50 placeholder-white/40"
               />
               <button onClick={searchLocation}
-                className="bg-white/5 border border-white/10 text-white/50 hover:text-white px-3 py-2 font-mono text-xs transition-colors">
+                className="bg-white/5 border border-white/10 text-white/80 hover:text-white px-3 py-2 font-mono text-xs transition-colors">
                 GO
               </button>
             </div>
             <div className="flex flex-wrap gap-1.5">
               {CITIES.map(c => (
                 <button key={c.name} onClick={() => flyTo(c)}
-                  className="px-2 py-1 text-[9px] font-mono tracking-wider border border-white/10 text-white/30 hover:border-[#E8001D]/50 hover:text-white/70 transition-all uppercase">
+                  className="px-2 py-1 text-[9px] font-mono tracking-wider border border-white/10 text-white/70 hover:border-[#E8001D]/50 hover:text-white/70 transition-all uppercase">
                   {c.name}
                 </button>
               ))}
@@ -292,24 +292,24 @@ export default function ToolClient() {
           </div>
 
           {/* Dates */}
-          <div className="p-4 border-b border-white/8">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">Dates</div>
+          <div className="p-4 border-b border-white/15">
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">Dates</div>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <div className="font-mono text-[9px] text-white/20 mb-1">PRE-EVENT</div>
+                <div className="font-mono text-[9px] text-white/50 mb-1">PRE-EVENT</div>
                 <input type="date" value={preDate} onChange={e => setPreDate(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 text-white/70 text-[10px] font-mono px-2 py-1.5 outline-none focus:border-[#E8001D]/50" />
+                  className="w-full bg-white/5 border border-white/10 text-white text-[10px] font-mono px-2 py-1.5 outline-none focus:border-[#E8001D]/50" />
               </div>
               <div>
-                <div className="font-mono text-[9px] text-white/20 mb-1">POST-EVENT</div>
+                <div className="font-mono text-[9px] text-white/50 mb-1">POST-EVENT</div>
                 <input type="date" value={postDate} onChange={e => setPostDate(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 text-white/70 text-[10px] font-mono px-2 py-1.5 outline-none focus:border-[#E8001D]/50" />
+                  className="w-full bg-white/5 border border-white/10 text-white text-[10px] font-mono px-2 py-1.5 outline-none focus:border-[#E8001D]/50" />
               </div>
             </div>
           </div>
 
           {/* Analyze button */}
-          <div className="p-4 border-b border-white/8">
+          <div className="p-4 border-b border-white/15">
             <motion.button
               onClick={runAnalysis}
               disabled={isRunning || !selectedPos}
@@ -317,9 +317,9 @@ export default function ToolClient() {
               whileTap={!isRunning && selectedPos ? { scale: 0.98 } : {}}
               className={`w-full py-3.5 font-display text-lg tracking-widest transition-all ${
                 isRunning
-                  ? 'bg-white/5 text-white/20 cursor-not-allowed'
+                  ? 'bg-white/5 text-white/50 cursor-not-allowed'
                   : !selectedPos
-                  ? 'bg-white/5 text-white/20 cursor-not-allowed'
+                  ? 'bg-white/5 text-white/50 cursor-not-allowed'
                   : 'bg-[#E8001D] text-white hover:bg-[#c0001a]'
               }`}
             >
@@ -331,13 +331,13 @@ export default function ToolClient() {
               ) : 'RUN ANALYSIS'}
             </motion.button>
             {!selectedPos && (
-              <p className="font-mono text-[9px] text-white/20 text-center mt-2">Click map to select location</p>
+              <p className="font-mono text-[9px] text-white/50 text-center mt-2">Click map to select location</p>
             )}
           </div>
 
           {/* Log */}
           <div className="p-4 flex-1 flex flex-col">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">System Log</div>
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">System Log</div>
             <div className="flex-1 overflow-y-auto space-y-0.5 min-h-0">
               {logs.map((l, i) => <LogLine key={i} text={l.text} type={l.type} />)}
             </div>
@@ -376,7 +376,7 @@ export default function ToolClient() {
                 <div className="font-display text-2xl tracking-widest text-white">
                   {status === 'fetching' ? 'FETCHING IMAGERY' : 'RUNNING AI MODEL'}
                 </div>
-                <div className="font-mono text-xs text-white/30 tracking-widest">
+                <div className="font-mono text-xs text-white/70 tracking-widest">
                   {status === 'fetching' ? 'Loading NASA satellite tiles...' : 'Siamese U-Net inference...'}
                 </div>
               </motion.div>
@@ -400,33 +400,33 @@ export default function ToolClient() {
         </div>
 
         {/* ── RIGHT SIDEBAR ── */}
-        <div className="w-72 flex-shrink-0 bg-[#0A0A0A] border-l border-white/8 flex flex-col overflow-y-auto">
+        <div className="w-72 flex-shrink-0 bg-[#0A0A0A] border-l border-white/15 flex flex-col overflow-y-auto">
 
           {/* Image previews */}
-          <div className="p-4 border-b border-white/8">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">Imagery</div>
+          <div className="p-4 border-b border-white/15">
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">Imagery</div>
             <div className="grid grid-cols-3 gap-2">
               {/* Pre */}
-              <div className="aspect-square bg-white/5 border border-white/8 overflow-hidden relative">
+              <div className="aspect-square bg-white/5 border border-white/15 overflow-hidden relative">
                 {preThumb
                   ? <img src={preThumb} className="w-full h-full object-cover" alt="pre" />
-                  : <div className="w-full h-full flex items-center justify-center font-mono text-[8px] text-white/15">PRE</div>
+                  : <div className="w-full h-full flex items-center justify-center font-mono text-[8px] text-white/40">PRE</div>
                 }
                 <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-center font-mono text-[7px] text-white/40 py-0.5">PRE</div>
               </div>
               {/* Post */}
-              <div className="aspect-square bg-white/5 border border-white/8 overflow-hidden relative">
+              <div className="aspect-square bg-white/5 border border-white/15 overflow-hidden relative">
                 {postThumb
                   ? <img src={postThumb} className="w-full h-full object-cover" alt="post" />
-                  : <div className="w-full h-full flex items-center justify-center font-mono text-[8px] text-white/15">POST</div>
+                  : <div className="w-full h-full flex items-center justify-center font-mono text-[8px] text-white/40">POST</div>
                 }
                 <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-center font-mono text-[7px] text-white/40 py-0.5">POST</div>
               </div>
               {/* Mask */}
-              <div className="aspect-square bg-white/5 border border-white/8 overflow-hidden relative">
+              <div className="aspect-square bg-white/5 border border-white/15 overflow-hidden relative">
                 {maskB64
                   ? <img src={`data:image/png;base64,${maskB64}`} className="w-full h-full object-cover" alt="mask" />
-                  : <div className="w-full h-full flex items-center justify-center font-mono text-[8px] text-white/15">MASK</div>
+                  : <div className="w-full h-full flex items-center justify-center font-mono text-[8px] text-white/40">MASK</div>
                 }
                 <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-center font-mono text-[7px] text-white/40 py-0.5">MASK</div>
               </div>
@@ -434,21 +434,21 @@ export default function ToolClient() {
           </div>
 
           {/* Big damage % */}
-          <div className="p-4 border-b border-white/8">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-2">Total Damage</div>
+          <div className="p-4 border-b border-white/15">
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-2">Total Damage</div>
             <div className="font-display text-7xl tracking-wider leading-none text-[#E8001D]">
               {stats ? `${stats.damage_pct}%` : '—'}
             </div>
             {stats && (
-              <div className="font-mono text-[9px] text-white/20 mt-1">
+              <div className="font-mono text-[9px] text-white/50 mt-1">
                 {stats.damaged_pixel_count.toLocaleString()} damaged pixels
               </div>
             )}
           </div>
 
           {/* Stats */}
-          <div className="p-4 border-b border-white/8">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">Breakdown</div>
+          <div className="p-4 border-b border-white/15">
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">Breakdown</div>
             {stats ? (
               <div className="space-y-3">
                 {[
@@ -465,7 +465,7 @@ export default function ToolClient() {
                     <div className="flex justify-between items-center mb-1">
                       <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-sm" style={{ background: item.color }} />
-                        <span className="font-mono text-[9px] text-white/40 uppercase tracking-wider">{item.label}</span>
+                        <span className="font-mono text-[9px] text-white/70 uppercase tracking-wider">{item.label}</span>
                       </div>
                       <span className="font-mono text-[10px] text-white/60">
                         {stats[item.key]?.pct || 0}%
@@ -484,15 +484,15 @@ export default function ToolClient() {
                 ))}
               </div>
             ) : (
-              <div className="font-mono text-[9px] text-white/15 leading-6">
+              <div className="font-mono text-[9px] text-white/40 leading-6">
                 No analysis yet.<br />Select location<br />and run analysis.
               </div>
             )}
           </div>
 
           {/* Legend */}
-          <div className="p-4 border-b border-white/8">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">Legend</div>
+          <div className="p-4 border-b border-white/15">
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">Legend</div>
             <div className="space-y-2">
               {[
                 { color: '#22C55E', label: 'No Damage',   cls: '0' },
@@ -503,8 +503,8 @@ export default function ToolClient() {
               ].map(l => (
                 <div key={l.cls} className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: l.color }} />
-                  <span className="font-mono text-[9px] text-white/30 flex-1">{l.label}</span>
-                  <span className="font-mono text-[9px] text-white/15">class {l.cls}</span>
+                  <span className="font-mono text-[9px] text-white/70 flex-1">{l.label}</span>
+                  <span className="font-mono text-[9px] text-white/40">class {l.cls}</span>
                 </div>
               ))}
             </div>
@@ -512,7 +512,7 @@ export default function ToolClient() {
 
           {/* Model info */}
           <div className="p-4">
-            <div className="font-mono text-[9px] tracking-[0.3em] text-white/20 uppercase mb-3">Model</div>
+            <div className="font-mono text-[9px] tracking-[0.3em] text-white/60 uppercase mb-3">Model</div>
             <div className="space-y-1.5">
               {[
                 ['Architecture', 'Siamese U-Net'],
@@ -522,7 +522,7 @@ export default function ToolClient() {
                 ['Framework',    'PyTorch'],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between">
-                  <span className="font-mono text-[9px] text-white/20">{k}</span>
+                  <span className="font-mono text-[9px] text-white/50">{k}</span>
                   <span className="font-mono text-[9px] text-white/50">{v}</span>
                 </div>
               ))}
