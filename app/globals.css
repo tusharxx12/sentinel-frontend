@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red: #E8001D;
+  --black: #0A0A0A;
+  --white: #FAFAFA;
+  --gray: #F2F2F2;
+  --mid: #8A8A8A;
+}
+
+html { scroll-behavior: smooth; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+::selection {
+  background: #E8001D;
+  color: #FAFAFA;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #FAFAFA; }
+::-webkit-scrollbar-thumb { background: #0A0A0A; }
+
+/* Damage color classes for the visual demo */
+.dmg-none     { background: #E8F5E9; }
+.dmg-minor    { background: #FFF9C4; }
+.dmg-major    { background: #FFE0B2; }
+.dmg-destroy  { background: #FFCDD2; }
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
