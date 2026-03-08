@@ -159,7 +159,7 @@ function getNasaTileUrl(date) {
 }
 
   function getTileImageUrl(lat, lon, date) {
-    const zoom  = 13
+    const zoom  = 9
     const xtile = Math.floor((lon + 180) / 360 * Math.pow(2, zoom))
     const ytile = Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom))
     return `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${date}/GoogleMapsCompatible_Level9/${zoom}/${ytile}/${xtile}.jpg`
