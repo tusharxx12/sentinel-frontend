@@ -224,7 +224,7 @@ if (!mask) throw new Error('No mask in response: ' + JSON.stringify(result))
 
 setMaskB64(mask)
 setStats(s)
-drawOverlay(mask, lat, lon)
+leafletRef.current.flyTo([lat, lon], 15)
 setStatus('done')
 log(`Analysis complete — ${s?.damage_pct ?? '?'}% damage detected`, 'ok')
 //Look for: API response: {...}
