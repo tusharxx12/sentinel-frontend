@@ -201,9 +201,16 @@ function getNasaTileUrl(date) {
         opacity: 0.5, attribution: 'NASA GIBS'
       }).addTo(leafletRef.current)
 
-      log('Imagery loaded', 'ok')
-      setStatus('analyzing')
-      log('Running AI inference...')
+      // verify tiles exist
+const test = await fetch(postUrl)
+
+if (!test.ok) {
+  throw new Error('Satellite imagery unavailable for selected date')
+}
+
+log('Imagery loaded', 'ok')
+setStatus('analyzing')
+log('Running AI inference...')
 
       const resp = await fetch(`${API_URL}/analyze`, {
         method: 'POST',
