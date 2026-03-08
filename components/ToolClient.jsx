@@ -202,11 +202,7 @@ function getNasaTileUrl(date) {
       }).addTo(leafletRef.current)
 
       // verify tiles exist
-const test = await fetch(postUrl)
 
-if (!test.ok) {
-  throw new Error('Satellite imagery unavailable for selected date')
-}
 
 log('Imagery loaded', 'ok')
 setStatus('analyzing')
