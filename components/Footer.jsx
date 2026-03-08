@@ -59,7 +59,7 @@ export default function Footer() {
             className="flex flex-wrap items-center justify-center gap-4"
           >
             <motion.a
-              href="#"
+              href="/tool"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               className="inline-flex items-center gap-4 bg-[#E8001D] text-white px-12 py-5 font-display text-2xl tracking-widest hover:bg-[#c0001a] transition-colors"
