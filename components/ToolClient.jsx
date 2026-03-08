@@ -227,7 +227,7 @@ setStats(s)
 drawOverlay(mask, lat, lon)
 setStatus('done')
 log(`Analysis complete — ${s?.damage_pct ?? '?'}% damage detected`, 'ok')
-Look for: API response: {...}
+//Look for: API response: {...}
     } catch (e) {
       setStatus('error')
       log(`Error: ${e.message}`, 'err')
