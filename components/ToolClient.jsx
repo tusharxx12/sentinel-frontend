@@ -154,9 +154,9 @@ export default function ToolClient() {
   }
 
   // ── Get NASA tile URL ─────────────────────────────
-  function getNasaTileUrl(date) {
-    return `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/${date}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`
-  }
+function getNasaTileUrl(date) {
+  return `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${date}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg`
+}
 
   function getTileImageUrl(lat, lon, date) {
     const zoom  = 13
